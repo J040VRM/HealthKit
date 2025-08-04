@@ -32,7 +32,7 @@ class ContentViewModel: ObservableObject {
     
     //MARK: Sleep
     @Published var sleepSamples: [HKCategorySample] = []
-    @Published var sleepEntries: [SleepEntry] = []
+    @Published var sleepEntries: [SleepData] = []
    
     //MARK: - Functions
     
@@ -149,7 +149,7 @@ class ContentViewModel: ObservableObject {
         }
         
         let entries = dailySleep.map { (day, duration) in
-            SleepEntry(date: day, durationInHours: duration / 3600)
+            SleepData(date: day, durationInHours: duration / 3600)
         }
         
         self.sleepEntries = entries.sorted(by: { $0.date < $1.date })

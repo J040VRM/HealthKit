@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = ContentViewModel()
+    @State var didAllowHealth = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView{
+            UserInfoView()
+                .tabItem{
+                    Label("user", systemImage: "person")
+                }
+                .onAppear{
+                   viewModel.requestHealthPermission { success in
+                        if success { didAllowHealth = true }
+                    }
+                }
+            ChartsView(viewModel: viewModel)
+                .tabItem{
+                    Label("charts", systemImage: "chart.line.text.clipboard")
+                }
         }
-        .padding()
     }
 }
 

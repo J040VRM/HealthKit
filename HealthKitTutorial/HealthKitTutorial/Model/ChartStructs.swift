@@ -28,7 +28,7 @@ struct SleepSegment: Identifiable {
     let value: Int // Category: 0 = In bed, 1 = Asleep
 }
 
-struct SleepEntry: Identifiable {
+struct SleepData: Identifiable {
     let id = UUID()
     let date: Date
     let durationInHours: Double

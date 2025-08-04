@@ -102,7 +102,7 @@ class HealthManager: ObservableObject {
             return
         }
 
-        // Soma do tempo total de atividade (em segundos)
+        // Calculates total activity time
         let totalDuration = workouts.reduce(0) { $0 + $1.duration }
 
         completion(workouts, totalDuration)
@@ -135,6 +135,7 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }
     
+    /// Fetch HeartRateSample for a specific workout
     func fetchHeartRateSamples(for workout: HKWorkout, completion: @escaping ([HeartRateSample]) -> Void) {
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
         let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate)
@@ -157,6 +158,7 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }
     
+    /// Fetch HeartRateSample before a specific time
     func fetchSleepSamples(before workout: HKWorkout, completion: @escaping ([HKCategorySample]) -> Void) {
         guard let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
             completion([])
@@ -180,7 +182,8 @@ class HealthManager: ObservableObject {
 
         healthStore.execute(query)
     }
-
+    
+    /// Fetch sleep samples
     func fetchRecentSleepSamples(completion: @escaping ([HKCategorySample]) -> Void) {
         guard let sleepType = HKObjectType.categoryType(forIdentifier: .sleepAnalysis) else {
             completion([])
