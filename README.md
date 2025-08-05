@@ -3,16 +3,16 @@
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:43C6AC,100:F8FFAE&height=200&section=header&text=SwiftUI%20%2B%20HealthKit%20Tracker&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=40">
 
 <p align="center">
-  <i>🏃‍♀️ Aplicativo de rastreamento de saúde usando SwiftUI e integração com o HealthKit da Apple. Veja passos, calorias, distância e muito mais.</i>
+  <i>Aplicativo de rastreamento de saúde usando SwiftUI e integração com o HealthKit da Apple. Veja passos, calorias, distância e muito mais.</i>
 </p>
 
 <p align="center">
-  <i>🏃‍♂️ Health tracking app built with SwiftUI and integrated with Apple HealthKit — displaying steps, calories, distance and more.</i>
+  <i> Health tracking app built with SwiftUI and integrated with Apple HealthKit — displaying steps, calories, distance and more.</i>
 </p>
 
 ---
 
-### 🌟 Features | Funcionalidades
+###  Features | Funcionalidades
 
 <div align="center">
 
@@ -30,7 +30,7 @@
 
 ---
 
-### 🧰 Technologies | Tecnologias
+###  Technologies | Tecnologias
 
 | Tipo      | Ferramenta/Framework | Descrição                                                     |
 | --------- | ---------------------| -------------------------------------------------------------- |
@@ -40,7 +40,7 @@
 
 ---
 
-### 🛠️ Estrutura do Projeto
+###  Estrutura do Projeto
 
 - `HealthManager.swift`: gerenciamento de permissões e leitura dos dados do HealthKit
 - `HealthDataViewModel.swift`: view model que comunica os dados para a interface
@@ -51,7 +51,7 @@
 
 ---
 
-### 🚀 Executando o Projeto
+### Executando o Projeto
 
 1. Clone o repositório:
 ```bash
@@ -72,7 +72,7 @@ open HealthKit.xcodeproj
 
 ---
 
-### 🧑‍⚕️ Permissões Necessárias
+### Permissões Necessárias
 
 - O app solicita permissão para ler os seguintes dados do HealthKit:
   - Passos (`stepCount`)
@@ -83,7 +83,7 @@ open HealthKit.xcodeproj
 
 ---
 
-### 📌 Observações
+###  Observações
 
 - O HealthKit só funciona em **dispositivos físicos**.
 - Certifique-se de permitir o acesso no app **Saúde** da Apple.
