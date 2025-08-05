@@ -13,19 +13,20 @@ struct ContentView: View {
     
     var body: some View {
         TabView{
-            UserInfoView()
+            WorkoutView(viewModel: viewModel)
                 .tabItem{
-                    Label("user", systemImage: "person")
+                    Label("Workouts", systemImage: "person")
                 }
-                .onAppear{
-                   viewModel.requestHealthPermission { success in
-                        if success { didAllowHealth = true }
-                    }
-                }
+                
             ChartsView(viewModel: viewModel)
                 .tabItem{
                     Label("charts", systemImage: "chart.line.text.clipboard")
                 }
+        }
+        .onAppear{
+           viewModel.requestHealthPermission { success in
+                if success { didAllowHealth = true }
+            }
         }
     }
 }

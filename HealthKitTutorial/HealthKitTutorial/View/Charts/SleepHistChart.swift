@@ -37,22 +37,7 @@ struct SleepHistChart: View {
                     )
                     .interpolationMethod(.catmullRom)
 
-                    PointMark(
-                        x: .value("Mês", entry.date),
-                        y: .value("Horas Dormidas", entry.durationInHours)
-                    )
-                    .foregroundStyle(entry.id == selectedEntry?.id ? .antiAccent : .accent)
-                }
-
-                if let selected = selectedEntry {
-                    RuleMark(x: .value("Mês", selected.date))
-                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [4]))
-                        .foregroundStyle(.gray)
-                        .annotation(position: .top) {
-                            Text("\(String(format: "%.1f", selected.durationInHours)) h")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
+                    
                 }
             }
             .chartXAxis {

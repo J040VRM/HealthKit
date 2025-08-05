@@ -31,29 +31,12 @@ struct BPMChartView: View {
             .padding(.horizontal)
 
             Chart {
-                ForEach(viewModel.bpmPerWorkout) { entry in
+                ForEach(viewModel.bpmPerWorkout) {
                     LineMark(
-                        x: .value("Data", entry.date),
-                        y: .value("BPM Médio", entry.averageBPM)
+                        x: .value("Data", $0.date),
+                        y: .value("BPM Médio", $0.averageBPM)
                     )
                     .interpolationMethod(.catmullRom)
-
-                    PointMark(
-                        x: .value("Data", entry.date),
-                        y: .value("BPM Médio", entry.averageBPM)
-                    )
-                    .foregroundStyle(entry.id == selectedEntry?.id ? .antiAccent : .accent)
-                }
-
-                if let selected = selectedEntry {
-                    RuleMark(x: .value("Data", selected.date))
-                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [5]))
-                        .foregroundStyle(.gray)
-                        .annotation(position: .top, alignment: .leading) {
-                            Text("\(String(format: "%.0f", selected.averageBPM)) bpm")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
                 }
             }
             .chartXAxis {
@@ -65,26 +48,6 @@ struct BPMChartView: View {
             }
             .chartYAxis {
                 AxisMarks(position: .leading)
-            }
-            .chartOverlay { proxy in
-                GeometryReader { geometry in
-                    Rectangle()
-                        .fill(Color.clear)
-                        .contentShape(Rectangle())
-                        .gesture(
-                            DragGesture()
-                                .onChanged { value in
-                                    let location = value.location
-                                    if let date: Date = proxy.value(atX: location.x) {
-                                        let closest = viewModel.bpmPerWorkout.min(by: {
-                                            abs($0.date.timeIntervalSince(date)) <
-                                            abs($1.date.timeIntervalSince(date))
-                                        })
-                                        selectedEntry = closest
-                                    }
-                                }
-                        )
-                }
             }
             .padding()
             .overlay(
@@ -123,12 +86,3 @@ struct BPMChartView: View {
     }
 }
 
-#Preview {
-    BPMChartView(viewModel: {
-        let vm = ContentViewModel()
-        vm.bpmPerWorkout = [
-            WorkoutBPMEntry(date: Date(), averageBPM: 150, workout: HKWorkout())
-        ]
-        return vm
-    }())
-}
