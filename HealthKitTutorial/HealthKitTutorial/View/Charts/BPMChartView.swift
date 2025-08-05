@@ -122,3 +122,13 @@ struct BPMChartView: View {
         return ((avgLast - avgPrev) / avgPrev) * 100
     }
 }
+
+#Preview {
+    BPMChartView(viewModel: {
+        let vm = ContentViewModel()
+        vm.bpmPerWorkout = [
+            WorkoutBPMEntry(date: Date(), averageBPM: 150, workout: HKWorkout())
+        ]
+        return vm
+    }())
+}
